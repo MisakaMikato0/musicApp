@@ -1,0 +1,1 @@
+<view><block wx:if="{{Tj=='1'}}"><view><label class="_span">111111111111</label></view></block><block wx:if="{{Tj=='2'}}"><view><label class="_span">222222222222</label></view></block><block wx:if="{{Tj=='3'}}"><view><label class="_span">33333333333</label></view></block><block wx:if="{{Tj=='4'}}"><view><label class="_span">44444444444444</label></view></block></view>
