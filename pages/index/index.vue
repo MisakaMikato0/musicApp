@@ -4,12 +4,12 @@
               
                <view class="com_header_center">
 				   <input type="text" style="border: 1px solid black; border-radius: 10px; "
-				     placeholder="请输入歌曲内容">
+				     placeholder="点击搜索" @click="setDisplay" value="">
 			   </view>
                
            </view>
     <!-- 页面内容 -->
-    <view class="content" :style="{paddingTop: customBar + 'px'}">
+    <view class="content1" :style="{paddingTop: customBar + 'px'}">
 		<!-- <scroll-view :scroll-top="scrollTop" scroll-y="true" class="scroll-Y" @scrolltoupper="upper"
 					 @scrolltolower="lower" @scroll="scroll" style="height: 100%;"> -->
 						<view style="margin-bottom: 5rpx;" >
@@ -70,7 +70,6 @@
 		<!-- </scroll-view>  -->
 			  
     </view>
-   
   </view>
 </template>
 <script>
@@ -99,7 +98,8 @@
 			{id:'2',name:'霜雪千年',sing:'洛天依',img:'../../static/logo.png'},
 			{id:'3',name:'badApple',sing:'zun',img:'../../static/logo.png'},
 			{id:'4',name:'千本樱',sing:'初音未来',img:'../../static/logo.png'},
-			]
+			],
+		searchHistory:[]
       };
     },
     props: {
@@ -139,6 +139,25 @@
 	     }
 	   })
 	 },
+	 setDisplay() {
+	 	uni.navigateTo({
+	 		url:'../searchs/searchs',
+			success() {
+				console.log('search');
+			}
+	 	})
+	 },
+	 getvalue(e) {
+		 console.log(e.detail.value);
+		 uni.setStorage({
+			 key:'sHistory',
+			 data:e.detail.value,
+			 success() {
+			 	console.log('success');
+			 }
+		 })
+		 
+	 }
     },
     created() {
 	  uni.getSystemInfo({
@@ -221,7 +240,7 @@ page {
     }
    
 }
-.content {
+.content1 {
 	height: 100%;
 	image {
 		display: block;

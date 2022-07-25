@@ -212,7 +212,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 var _default =
 {
   data: function data() {
@@ -238,8 +237,9 @@ var _default =
       { id: '1', name: '千本樱', sing: '初音未来', img: '../../static/logo.png' },
       { id: '2', name: '霜雪千年', sing: '洛天依', img: '../../static/logo.png' },
       { id: '3', name: 'badApple', sing: 'zun', img: '../../static/logo.png' },
-      { id: '4', name: '千本樱', sing: '初音未来', img: '../../static/logo.png' }] };
+      { id: '4', name: '千本樱', sing: '初音未来', img: '../../static/logo.png' }],
 
+      searchHistory: [] };
 
   },
   props: {},
@@ -277,6 +277,25 @@ var _default =
         fail: function fail() {
           console.log("跳转失败");
         } });
+
+    },
+    setDisplay: function setDisplay() {
+      uni.navigateTo({
+        url: '../searchs/searchs',
+        success: function success() {
+          console.log('search');
+        } });
+
+    },
+    getvalue: function getvalue(e) {
+      console.log(e.detail.value);
+      uni.setStorage({
+        key: 'sHistory',
+        data: e.detail.value,
+        success: function success() {
+          console.log('success');
+        } });
+
 
     } },
 
