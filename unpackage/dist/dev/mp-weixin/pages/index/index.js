@@ -300,6 +300,28 @@ var _default =
     } },
 
   created: function created() {var _this = this;
+    // uni.request({
+    // 	url:`${this.$baseUrl}/captcha/sent?phone=18788102847`,
+    // 	method:"GET",
+    // 	success: (res) => {
+    // 		console.log(res);
+    // 	},
+    // 	fail: (err) => {
+    // 		console.log(err);
+    // 	}
+    // })
+    uni.request({
+      url: "".concat(this.$baseUrl, "/homepage/block/page"),
+      method: "GET",
+      success: function success(res) {
+        console.log(res);
+      },
+      fail: function fail(err) {
+        console.log(err);
+      } });
+
+    console.log(this.$baseUrl);
+
     uni.getSystemInfo({
       success: function success(e) {
         var statusBar = 0;
@@ -344,6 +366,27 @@ var _default =
 
         _this.statusBar = statusBar;
         _this.customBar = customBar;
+      } });
+
+  },
+  onShow: function onShow() {
+    uni.request({
+      url: "".concat(this.$baseUrl, "/login/status"),
+      method: "GET",
+      success: function success(res) {
+        if (res.data) {
+          if (res.data.code == '-462') {
+            uni.navigateTo({
+              url: '../login/login',
+              success: function success() {
+                console.log('成功');
+              } });
+
+          }
+        }
+      },
+      fail: function fail(err) {
+        console.log(err);
       } });
 
   } };exports.default = _default;

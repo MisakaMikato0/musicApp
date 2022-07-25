@@ -7,7 +7,8 @@
     "pages/video/video",
     "pages/show/show",
     "pages/more/more",
-    "pages/searchs/searchs"
+    "pages/searchs/searchs",
+    "pages/login/login"
   ],
   "subPackages": [],
   "window": {

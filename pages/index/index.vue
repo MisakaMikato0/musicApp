@@ -160,6 +160,28 @@
 	 }
     },
     created() {
+		// uni.request({
+		// 	url:`${this.$baseUrl}/captcha/sent?phone=18788102847`,
+		// 	method:"GET",
+		// 	success: (res) => {
+		// 		console.log(res);
+		// 	},
+		// 	fail: (err) => {
+		// 		console.log(err);
+		// 	}
+		// })
+		uni.request({
+			url:`${this.$baseUrl}/homepage/block/page`,
+			method:"GET",
+			success: (res) => {
+				console.log(res);
+			},
+			fail: (err) => {
+				console.log(err);
+			}
+		})
+		console.log(this.$baseUrl);
+		
 	  uni.getSystemInfo({
 	      success: (e) => {
 	        let statusBar = 0
@@ -207,6 +229,27 @@
 	      }
 	  })
     },
+	onShow() {
+		uni.request({
+			url:`${this.$baseUrl}/login/status`,
+			method:"GET",
+			success: (res) => {
+				if(res.data) {
+					if(res.data.code == '-462') {
+						uni.navigateTo({
+							url:'../login/login',
+							success() {
+								console.log('成功');
+							}
+						})
+					}
+				}
+			},
+			fail: (err) => {
+				console.log(err);
+			}
+		})
+	}
   }
 
 </script>

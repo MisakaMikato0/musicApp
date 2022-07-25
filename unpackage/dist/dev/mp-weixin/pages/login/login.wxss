@@ -1,0 +1,14 @@
+@charset "UTF-8";
+/* 水平间距 */
+/* 水平间距 */
+.uni-form-item {
+  display: flex;
+}
+.uni-form-item .title {
+  padding: 0 20rpx;
+}
+.uni-form-item .uni-input {
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
