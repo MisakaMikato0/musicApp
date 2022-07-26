@@ -8,9 +8,10 @@
 		<view >
 			<view class="hotTitle">
 				<span>热门搜索</span>
-				<!-- <image src="../../static/删除.png" mode="" @click="hisDel"></image> -->
 			</view>
-			<view class="hotList"></view>
+			<view class="hotSearch">
+				<view class="hotList" v-for="(item,index) in hotSearch" :key="index">{{item.first}}</view>
+			</view>
 		</view>
 		<view>
 			<view class="hisSearch">
@@ -53,6 +54,9 @@
 				}]
 			}
 		},
+		created() {
+			this.sxlist()
+		},
 		methods: {
 			goBack() {
 				
@@ -89,6 +93,20 @@
 					}
 				}
 				uni.setStorageSync('searchRecord', searchRecord)
+			},
+			sxlist() {
+				let that = this
+				uni.request({
+					url:`${this.$baseUrl}/search/hot`,
+					method:"GET",
+					success(res) {
+						console.log(res);
+						that.hotSearch = res.data.result.hots
+					},
+					fail(err) {
+						console.log(err);
+					}
+				})
 			}
 		},
 		onLoad:function() {
@@ -119,6 +137,15 @@
 		height: 50rpx;
 	}
 	
+}
+.hotSearch {
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	color: orangered;
+	view {
+		padding: 10rpx 20rpx;
+	}
 }
 .historys {
 		display: flex;

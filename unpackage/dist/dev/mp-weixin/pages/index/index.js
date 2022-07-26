@@ -211,7 +211,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 var _default =
 {
   data: function data() {
@@ -224,15 +223,10 @@ var _default =
       autoplay: true,
       interval: 2000,
       duration: 500,
-      dataList: [{ id: "1", name: '推荐' }, { id: "2", name: '列表' }, { id: "3", name: '排行' }, { id: "4", name: '电台' }],
-      musList: [
-      { id: "1", name: '古风' },
-      { id: "2", name: '现代' },
-      { id: "3", name: '二次元ACG' },
-      { id: "4", name: '东方Project' },
-      { id: "5", name: '复古' },
-      { id: "6", name: '晚安' }],
-
+      banners: [],
+      dataList: [{ id: "1", name: '推荐', img: '../../static/hot_fill.png' }, { id: "2", name: '列表', img: '../../static/列表模式.png' }, { id: "3", name: '排行', img: '../../static/排行.png' }, { id: "4", name: '电台', img: '../../static/电台.png' }],
+      playlists: [],
+      hotlist: [],
       musicList: [
       { id: '1', name: '千本樱', sing: '初音未来', img: '../../static/logo.png' },
       { id: '2', name: '霜雪千年', sing: '洛天依', img: '../../static/logo.png' },
@@ -300,21 +294,55 @@ var _default =
     } },
 
   created: function created() {var _this = this;
-    // uni.request({
-    // 	url:`${this.$baseUrl}/captcha/sent?phone=18788102847`,
-    // 	method:"GET",
-    // 	success: (res) => {
-    // 		console.log(res);
-    // 	},
-    // 	fail: (err) => {
-    // 		console.log(err);
-    // 	}
-    // })
     uni.request({
-      url: "".concat(this.$baseUrl, "/homepage/block/page"),
+      url: "".concat(this.$baseUrl, "/top/playlist?limit=10&order=hot"),
+      method: "GET",
+      success: function success(res) {
+        console.log(res.data);
+        _this.playlists = res.data.playlists;
+      },
+      fail: function fail(err) {
+        console.log(err);
+      } }),
+
+    uni.request({
+      url: "".concat(this.$baseUrl, "/playlist/catlist"),
       method: "GET",
       success: function success(res) {
         console.log(res);
+      },
+      fail: function fail(err) {
+        console.log(err);
+      } });
+
+    uni.request({
+      url: "".concat(this.$baseUrl, "/toplist"),
+      method: "GET",
+      success: function success(res) {
+        console.log(res);
+        _this.hotlist = res.data.list;
+      },
+      fail: function fail(err) {
+        console.log(err);
+      } });
+
+    uni.request({
+      url: "".concat(this.$baseUrl, "/top/song?type=8"),
+      method: "GET",
+      success: function success(res) {
+        console.log(res, 1111111111111111111111);
+        _this.musicList = res.data.data.slice(0, 10);
+      },
+      fail: function fail(err) {
+        console.log(err);
+      } });
+
+    uni.request({
+      url: "".concat(this.$baseUrl, "/banner?type=2"),
+      method: "GET",
+      success: function success(res) {
+        console.log(res);
+        _this.banners = res.data.banners;
       },
       fail: function fail(err) {
         console.log(err);
@@ -388,6 +416,7 @@ var _default =
       fail: function fail(err) {
         console.log(err);
       } });
+
 
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

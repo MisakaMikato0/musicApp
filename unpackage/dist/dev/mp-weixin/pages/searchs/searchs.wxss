@@ -19,6 +19,15 @@
   width: 50rpx;
   height: 50rpx;
 }
+.hotSearch {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  color: orangered;
+}
+.hotSearch view {
+  padding: 10rpx 20rpx;
+}
 .historys {
   display: flex;
   justify-content: flex-start;

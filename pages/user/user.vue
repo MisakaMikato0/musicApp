@@ -23,7 +23,7 @@
 			</view>
 			<view>
 				<image src="../../static/进入.png" mode=""></image>
-				<span>退出登录</span>
+				<span @click='bcakUser'>退出登录</span>
 			</view>
 		</view>
    
@@ -52,12 +52,32 @@
             console.log("跳转失败");
           }
         })
-      }
+      },
+	  bcakUser() {
+		  uni.request({
+		  	url:`${this.$baseUrl}/logout`,
+			method:'GET',
+			success(res) {
+				console.log(res);
+			}
+		  })
+	  }
     },
     //第一次加载时调用
     created() {
     
-  }}
+  },
+	onShow() {
+		uni.request({
+			url:`${this.$baseUrl}/user/playlist?uid=32953014`,
+			method:"GET",
+			success(res) {
+				console.log(res);
+			}
+		})
+	}
+	
+}
 
 </script>
 <style lang="scss">

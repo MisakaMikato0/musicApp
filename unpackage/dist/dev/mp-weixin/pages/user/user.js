@@ -186,10 +186,28 @@ var _default =
           console.log("跳转失败");
         } });
 
+    },
+    bcakUser: function bcakUser() {
+      uni.request({
+        url: "".concat(this.$baseUrl, "/logout"),
+        method: 'GET',
+        success: function success(res) {
+          console.log(res);
+        } });
+
     } },
 
   //第一次加载时调用
   created: function created() {
+
+  },
+  onShow: function onShow() {
+    uni.request({
+      url: "".concat(this.$baseUrl, "/user/playlist?uid=32953014"),
+      method: "GET",
+      success: function success(res) {
+        console.log(res);
+      } });
 
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
